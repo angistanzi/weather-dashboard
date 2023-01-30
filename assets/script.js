@@ -25,8 +25,33 @@ fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${userSearchCity}&limit=5
 .then(data => {
 
     console.log(data)
+    console.log(data.list[0].main.temp)
+
+    let currentDate = moment().format("DD/MM/YYYY")
+    console.log(currentDate)
+
+    let cityName = data.city.name;
+    console.log(cityName)
+
+    let currentTemp = parseFloat(data.list[0].main.temp - 273).toFixed(2) + "ºC"
+    console.log(currentTemp)
+
+    let currentHumidity = data.list[0].main.humidity + "%"
+    console.log(currentHumidity)
+
+    let currentWindSpeed = data.list[0].wind.speed
+    console.log(currentWindSpeed)
+
+    let currentTempIcon = data.list[0].weather[0].icon
+    console.log(currentTempIcon)
+
+
+    
+
 
 })
 
 }
 );
+
+
