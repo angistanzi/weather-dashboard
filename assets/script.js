@@ -27,7 +27,7 @@ fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${userSearchCity}&limit=5
     console.log(data)
     console.log(data.list[0].main.temp)
 
-    let currentDate = moment().format("DD/MM/YYYY")
+    let currentDate = moment().format("MMMM, Do YYYY")
     console.log(currentDate)
 
     let cityName = data.city.name;
@@ -53,10 +53,10 @@ fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${userSearchCity}&limit=5
     //currentCityNewDiv.setAttribute("class", "container current-city")
     currentCityInfo.innerHTML =
         `<div class="container current-city">
-        <h1 class="display-4 current-city">${cityName} on ${currentDate}</h1>
+        <h1 class="display-4 current-city">${cityName}: ${currentDate}</h1>
           <p class="lead">Current Temperature: ${currentTemp}</p>
           <p class="lead">Current Humidity: ${currentHumidity}</p>
-          <p class="lead">Current Wind Speed: ${currentWindSpeed}</p>
+          <p class="lead">Current Wind Speed: ${currentWindSpeed} MPH</p>
           </div>`
     
     currentCityInfo.append(currentCityNewDiv);
