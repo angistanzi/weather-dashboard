@@ -1,0 +1,28 @@
+
+.custom-jumbo{
+    background: rgb(101, 101, 238) !important;
+    color: white !important;
+}
+
+.search-button{
+
+    background: rgb(101, 101, 238) !important;
+    color: white !important;
+    border-top-right-radius: 10px !important;
+    border-bottom-right-radius: 10px !important;
+}
+
+.custom-card{
+
+    background: rgb(101, 101, 238) !important;
+}
+
+#history-button{
+    background: rgb(101, 101, 238) !important;
+    border-radius: 10px;
+    color: white;
+    border: black 2px solid;
+    padding: 5px;
+
+}
+
