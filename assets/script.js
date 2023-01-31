@@ -14,7 +14,7 @@ let buttonSearch = document.querySelector("#search-button");
 
 });
 
-
+//Creating fetch request on click of Search button
 buttonSearch.addEventListener("click", function(event){
 
 event.preventDefault()
