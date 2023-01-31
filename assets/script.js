@@ -16,6 +16,7 @@ let buttonSearch = document.querySelector("#search-button");
 });
 
 //Creating fetch request on click of Search button
+function buildForecast(){
 buttonSearch.addEventListener("click", function(event){
 
 event.preventDefault()
@@ -75,9 +76,10 @@ fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${userSearchCity}&limit=5
     currentCityInfo.append(currentCityNewDiv);
 
     //Getting data for 5 day forecast cards
+
     let forecastDataArray = [8, 16, 24, 32, 40];
     for (i = 0; i < forecastDataArray.length; i++) {
-    
+        
     let forecastDate = moment(data.list[forecastDataArray[i]].dt, "X").format("DD/MM/YYYY")
     console.log(forecastDate)
 
@@ -99,6 +101,7 @@ fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${userSearchCity}&limit=5
     
     let forecastNewDiv = document.createElement("div")
     let fiveDayForecastEl = document.querySelector("#forecast")
+    //fiveDayForecastEl.innerHTML = "";
     forecastNewDiv.innerHTML = `
     <div class="card custom-card text-white mb-3" id="fiveDayForecast" style="max-width: 14rem;">
             <div class="card-header"><img src="${forecastIconUrl}"></img></div>
@@ -117,6 +120,9 @@ fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${userSearchCity}&limit=5
 })
 
 }
-);
+)};
+
+buildForecast()
+
 
 
