@@ -3,6 +3,18 @@
 
 let buttonSearch = document.querySelector("#search-button");
 
+ //Creating a new button for the most recent searches
+    
+ buttonSearch.addEventListener("click", function(event){
+    event.preventDefault()
+    let recentCityButton = document.createElement("button")
+    recentCityButton.textContent = document.querySelector("#search-input").value
+    let recentCities = document.querySelector("#history")
+    recentCities.prepend(recentCityButton);
+
+});
+
+
 buttonSearch.addEventListener("click", function(event){
 
 event.preventDefault()
@@ -25,8 +37,8 @@ fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${userSearchCity}&limit=5
 .then(data => {
 
     console.log(data)
-    console.log(data.list[0].main.temp)
 
+    //Setting variables for necessary data
     let currentDate = moment().format("MMMM, Do YYYY")
     console.log(currentDate)
 
@@ -45,12 +57,9 @@ fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${userSearchCity}&limit=5
     let currentTempIcon = data.list[0].weather[0].icon
     console.log(currentTempIcon)
 
-
-    
-   
+    //Creating new div and setting the innerHTML to contain the current city info
     let currentCityInfo = document.querySelector("#currentCityDiv")
     let currentCityNewDiv = document.createElement("div")
-    //currentCityNewDiv.setAttribute("class", "container current-city")
     currentCityInfo.innerHTML =
         `<div class="container current-city">
         <h1 class="display-4 current-city">${cityName}: ${currentDate}</h1>
@@ -58,8 +67,12 @@ fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${userSearchCity}&limit=5
           <p class="lead">Current Humidity: ${currentHumidity}</p>
           <p class="lead">Current Wind Speed: ${currentWindSpeed} MPH</p>
           </div>`
-    
+    //Appending the new div to the page
     currentCityInfo.append(currentCityNewDiv);
+
+   
+
+
 
  
 
