@@ -70,16 +70,49 @@ fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${userSearchCity}&limit=5
           <p class="lead">Current Temperature: ${currentTemp}</p>
           <p class="lead">Current Humidity: ${currentHumidity}</p>
           <p class="lead">Current Wind Speed: ${currentWindSpeed} MPH</p>
-          <aside></aside>
           </div>`
     //Appending the new div to the page
     currentCityInfo.append(currentCityNewDiv);
 
-   
+    //Getting data for 5 day forecast cards
+    let forecastDataArray = [8, 16, 24, 32, 40];
+    for (i = 0; i < forecastDataArray.length; i++) {
+    
+    let forecastDate = moment(data.list[forecastDataArray[i]].dt, "X").format("DD/MM/YYYY")
+    console.log(forecastDate)
 
+    let forecastTemp = parseFloat(data.list[forecastDataArray[i]].main.temp - 273).toFixed(2) + "ºC"
+    console.log(forecastTemp)
 
+    let forecastHumidity = data.list[forecastDataArray[i]].main.humidity + "%"
+    console.log(forecastHumidity)
 
- 
+    let forecastWindSpeed = data.list[forecastDataArray[i]].wind.speed
+    console.log(forecastWindSpeed)
+
+    let forecastTempIcon = data.list[forecastDataArray[i]].weather[0].icon
+    console.log(forecastTempIcon)
+
+    let forecastIconUrl = `https://openweathermap.org/img/wn/${forecastTempIcon}@2x.png`
+    console.log(forecastIconUrl)
+    
+    
+    let forecastNewDiv = document.createElement("div")
+    let fiveDayForecastEl = document.querySelector("#forecast")
+    forecastNewDiv.innerHTML = `
+    <div class="card custom-card text-white mb-3" id="fiveDayForecast" style="max-width: 14rem;">
+            <div class="card-header"><img src="${forecastIconUrl}"></img></div>
+            <div class="card-body">
+                <h5 class="card-title">${forecastDate}</h5>
+                <p class="lead">Temperature: ${forecastTemp}</p>
+                <p class="lead">Humidity: ${forecastHumidity}</p>
+                <p class="lead">Wind Speed: ${forecastWindSpeed} MPH</p>
+            </div>
+    </div>
+    `
+    
+    fiveDayForecastEl.append(forecastNewDiv)
+    }   
 
 })
 
