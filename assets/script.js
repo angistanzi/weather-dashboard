@@ -8,8 +8,11 @@ if(localStorage.getItem("cityHistory")){
 }
 
 //Creating a new button for the most recent searches
+let count = 0;
+let max = 7;
 
 buttonSearch.addEventListener("click", function (event) {
+    
     event.preventDefault()
     let recentCityButton = document.createElement("button")
     recentCityButton.setAttribute("id", "history-button")
@@ -17,9 +20,16 @@ buttonSearch.addEventListener("click", function (event) {
     recentCityButton.addEventListener("click", searchByHistory)
     let recentCities = document.querySelector("#history")
     recentCities.prepend(recentCityButton);
-    // Setting history buttons to run the fetch request
+    count += 1;
+    if(count >= max){
+        recentCityButton.remove(recentCityButton[6])
+    }
+    
+   
 
 });
+
+
 
 function searchByHistory(event) {
     console.log(event.target.textContent)
@@ -135,6 +145,7 @@ function renderHistory () {
     for(i=0; i< cityHistory.length; i++){
         //make buttons per index
         console.log(cityHistory[i])
+
     }
 }
 
