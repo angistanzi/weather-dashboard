@@ -13,7 +13,20 @@ let buttonSearch = document.querySelector("#search-button");
     let recentCities = document.querySelector("#history")
     recentCities.prepend(recentCityButton);
 
+    //Setting history buttons to run the fetch request
+    let historyButtons = document.querySelector("#history-button")
+    historyButtons.addEventListener("click", function(){
+
+    if (event.target.matches("#history-button")){
+
+        let city = event.target.textContent
+        buildForecast(city)
+
+    }
+})
+
 });
+
 
 //Creating fetch request on click of Search button
 function buildForecast(){
